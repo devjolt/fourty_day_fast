@@ -4,6 +4,7 @@
 
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>40 day fast</title>
         <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,7 +17,7 @@
         
         <ul>
             <li>Choose a day for your fast</li>
-            <li>Input your name to claim youy day</li>
+            <li>Input your name to claim your day</li>
             <li>Delete your entry to switch days</li>
         </ul>
 
@@ -49,7 +50,7 @@ b day.allow_delete == False: all other days display name if taken or available
                             {% if day.day.name == '' %}
                             <h2>Day {{day.day.day}}</h2>
                             <p>Enter your name to take this day!</p>
-                            <form action = '/fourty/' method='POST'>
+                            <form action = '/fast/' method='POST'>
                                 {% csrf_token %}
                                 <input class='day' type="hidden" value ='{{day.day.day}}' name='number' readonly>
                                 <input class = 'date' type ='hidden' value ='{{day.day.date}}' name='date' readonly>
@@ -68,7 +69,7 @@ b day.allow_delete == False: all other days display name if taken or available
                             
                             <h2>Day {{day.day.day}}</h2>
                             <h1 class = 'you'>Your day!</h1>
-                            <form action = '/fourty/' method='POST'>
+                            <form action = '/fast/' method='POST'>
                                 {% csrf_token %}
                                 <input type='submit' name = 'delete' value = 'Click to cancel'>
                             </form>

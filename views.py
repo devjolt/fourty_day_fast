@@ -9,7 +9,7 @@ def home(request):
             if key == 'delete':#if user wants to delete their name...
                 del_number, del_name = request.COOKIES['selected'].split(',')#get their cookie, containing their chosen day number and name
                 DayModel.objects.filter(day=del_number).update(name='')#model object with matching day number: name field to ''
-                response = HttpResponseRedirect('/fourty')#delete cookie and redirect to same page
+                response = HttpResponseRedirect('/fast')#delete cookie and redirect to same page
                 response.delete_cookie('selected')
                 return response
             elif key == 'name':#if user wants to add their name...
@@ -17,7 +17,7 @@ def home(request):
                 up_name = request.POST['name']#assign post name
                 DayModel.objects.filter(day=number).update(name=up_name)#update model object with post number with post name
                 up_name_dashes = re.sub(' ', '-', up_name)#convert any spaces in name to dashes for cookie storage
-                response = HttpResponseRedirect('/fourty')
+                response = HttpResponseRedirect('/fast')
                 response.set_cookie('selected', ','.join([number, up_name_dashes]), None)#make 'day_number,name-with-spaces' string and add this to cookie
                 return response
     else:
