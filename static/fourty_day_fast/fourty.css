@@ -128,11 +128,12 @@ day-grid{
 }
 .container .card .content p
 {
-    max-width: 180px;
+    
     padding: 0.5rem;
     font-size:1rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    max-width: auto;
     color:black;
     font-weight:300;
 }
@@ -154,7 +155,9 @@ day-grid{
 
 form {
     padding: 0.5rem;
-    max-width: 180px;
+    max-width: auto;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 input[type=submit] {
