@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>40 day fast</title>
+        <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "fourty_day_fast/fourty.css" %}">
+    </head>
+    <body>
+        <header>
+            <h1>Dudley Hill 40 Day Fast</h1>
+        </header>
+        
+        <ul>
+            <li>Choose a day for your fast</li>
+            <li>Input your name to claim youy day</li>
+            <li>Delete your entry to switch days</li>
+        </ul>
+
+        
+<!--each item in days ==
+    {   day.day - model containing:
+            day.day.day - this is the day number
+            day.day.date - this is the date
+            day.day.name - name will be a string if chosen, '' if not chose
+        day.allow_delete - True if it's ok to delete this item (it's their item), False if no permission to delete (not their item)
+        day.allow_add - True if permitted to add, False if not permitted to add}
+
+possibilities:
+1. day.allow_delete == None: User has not chosen a day, and will allow input of name in a day if name not already taken by another user
+2. day.allow_delete != None: User has chosen a day, 
+a day.allow_delete == True: chosen day displays delete option 
+b day.allow_delete == False: all other days display name if taken or available
+-->
+        <div class='day-grid'>
+    
+
+        {% for day in days %}
+
+            <div class = 'container'>
+                <div class = 'card'>
+                    <div class = 'content'>
+
+                        {% if day.allow_delete == None %}
+
+                            {% if day.day.name == '' %}
+                            <h2>Day {{day.day.day}}</h2>
+                            <p>Enter your name to take this day!</p>
+                            <form action = '/fourty/' method='POST'>
+                                {% csrf_token %}
+                                <input class='day' type="hidden" value ='{{day.day.day}}' name='number' readonly>
+                                <input class = 'date' type ='hidden' value ='{{day.day.date}}' name='date' readonly>
+                                <input type='text' name = 'name'>
+                                <input type='submit'>
+                            </form>
+                            <h3>{{day.day.date}}</h3>
+                            {% else %}
+                            <h2>Day {{day.day.day}}</h2>
+                            <h4>{{day.day.name}}</h4>
+                            <p>is fasting today</p>
+                            <h3>{{day.day.date}}</h3>
+                            {% endif %}
+
+                        {% elif day.allow_delete == True %}
+                            
+                            <h2>Day {{day.day.day}}</h2>
+                            <h1 class = 'you'>Your day!</h1>
+                            <form action = '/fourty/' method='POST'>
+                                {% csrf_token %}
+                                <input type='submit' name = 'delete' value = 'Click to cancel'>
+                            </form>
+                            <h3>{{day.day.date}}</h3>
+                            
+                        {% elif day.allow_delete == False %}
+
+                            {% if day.day.name == '' %}
+                            <h2>Day {{day.day.day}}</h2>
+                            <p>This date is available</p>
+                            <h3>{{day.day.date}}</h3>
+                            {% else %}
+                            <h2>Day {{day.day.day}}</h2>
+                            <h3>{{day.day.date}}</h3>
+                            <h4>{{day.day.name}}</h4>
+                            <p>is fasting today</p>
+                            <h3>{{day.day.date}}</h3>
+                            {% endif %}
+
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+                
+
+        </div>
+        <script type="text/javascript" src="{% static 'vanilla-tilt.js' %}"></script>
+
+        <script type="text/javascript">
+
+            VanillaTilt.init(document.querySelectorAll(".card"), {
+                max: 20,
+                speed: 500,
+                glare:false, 
+                reverse:true,
+                reset:true,
+                gyroscope: true,
+                gyroscopeMinAngleX:     -80,     // This is the bottom limit of the device angle on X axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the left border of the element;
+                gyroscopeMaxAngleX:     80,      // This is the top limit of the device angle on X axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the right border of the element;
+                gyroscopeMinAngleY:     -80,     // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at this angle would tilt the element as if the mouse was on the top border of the element;
+                gyroscopeMaxAngleY:     80,  
+                perspective:            1000, 
+            });
+            
+
+            
+
+            $(document).ready(function(){
+                $(".container").fadeIn(3000);
+            });
+        </script>
+    
+
+
+    </body>
+
+
+</html>
+
+
