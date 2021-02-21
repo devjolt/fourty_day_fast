@@ -82,8 +82,8 @@ b day.allow_delete == False: all other days display name if taken or available
 
                         {% elif day.allow_delete == True %}
                             
-                            <h2>Day {{day.day.day}}</h2>
-                            <h1 class = 'you' id='you'>Your day!</h1>
+                            <h2 id='you'>Day {{day.day.day}}</h2>
+                            <h1 class = 'you'>Your day!</h1>
                             <form action = '/fast/' method='POST'>
                                 {% csrf_token %}
                                 <input type='submit' name = 'delete' value = 'Click to cancel'>

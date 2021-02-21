@@ -18,7 +18,7 @@ def home(request):
                 DayModel.objects.filter(day=number).update(name=up_name)#update model object with post number with post name
                 up_name_dashes = re.sub(' ', '-', up_name)#convert any spaces in name to dashes for cookie storage
                 response = HttpResponseRedirect('/fast')
-                response.set_cookie('selected', ','.join([number, up_name_dashes]), None)#make 'day_number,name-with-spaces' string and add this to cookie
+                response.set_cookie('selected', ','.join([number, up_name_dashes]), max_age=4233600)#make 'day_number,name-with-spaces' string and add this to cookie
                 return response
     else:
         context = {'days':[]}#create context dict which will contain list of other dicts
