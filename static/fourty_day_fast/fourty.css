@@ -44,6 +44,33 @@ ul{
     padding: 1rem;
     font-size: 3vw;
 }
+
+.vert-nav {
+    list-style-type: none;
+    margin-top: 20%;
+    padding: 0;
+    width: max-content;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: min-content;
+    overflow: auto;
+    border: white;
+    border-radius: 10px;
+    font-size: 4vh;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-image: linear-gradient(to right, rgb(16, 99, 110),rgb(12, 164, 184));
+    color: white;
+}
+
 /*
 #header{
     display: none;    

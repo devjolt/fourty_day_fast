@@ -30,6 +30,7 @@ def home(request):
                 
                 if item.day == int(del_number):#should only be one of these, with permission to delete, but not to add
                     context['days'].append({'day':item, 'allow_delete': True, 'allow_add':False})
+                    context['name'] = True
                 else:#all others, no delete, no add
                     context['days'].append({'day':item, 'allow_delete': False, 'allow_add':False})
     
