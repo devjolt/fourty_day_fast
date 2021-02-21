@@ -6,16 +6,19 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>40 day fast</title>
+        <link rel="shortcut icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.MfMHQNe7AxGBxiABH3GpygAAAA%26pid%3DApi&f=1" type="image/x-icon" />
+
+
         <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{% static "fourty_day_fast/fourty.css" %}">
     </head>
     <body>
-        <header>
+        <header id='header'>
             <h1>Dudley Hill 40 Day Fast</h1>
         </header>
         
-        <ul>
+        <ul id='list'>
             <li>Choose a day for your fast</li>
             <li>Input your name to claim your day</li>
             <li>Delete your entry to switch days</li>
@@ -36,6 +39,8 @@ possibilities:
 a day.allow_delete == True: chosen day displays delete option 
 b day.allow_delete == False: all other days display name if taken or available
 -->
+        <div id='grid'>
+
         <div class='day-grid'>
     
 
@@ -97,6 +102,10 @@ b day.allow_delete == False: all other days display name if taken or available
                 
 
         </div>
+
+        </div>
+
+
         <script type="text/javascript" src="{% static 'vanilla-tilt.js' %}"></script>
 
         <script type="text/javascript">
@@ -118,8 +127,16 @@ b day.allow_delete == False: all other days display name if taken or available
 
             
 
+            //$(document).ready(function(){
+            //    $("#header").fadeIn(100);
+            //});
+
+            //$(document).ready(function(){
+            //    $("#list").fadeIn(500);
+            //});
+
             $(document).ready(function(){
-                $(".container").fadeIn(3000);
+                $("#grid").fadeIn(800);
             });
         </script>
     

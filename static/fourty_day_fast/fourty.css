@@ -44,8 +44,20 @@ ul{
     padding: 1rem;
     font-size: 3vw;
 }
+/*
+#header{
+    display: none;    
+}
 
-day-grid{
+#list{
+    display:none;
+}
+*/
+#grid{
+    display:none;
+}
+
+.day-grid{
     display: grid;
     grid-template: auto;
 }
